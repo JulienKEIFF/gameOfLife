@@ -8,7 +8,7 @@ const widthInput = document.getElementById('width-input').value
 const cellSizeInput = document.getElementById('cell-size-input').value
 
 // Setup the grid //
-const cellSize = cellSizeInput ? cellSizeInput : 80
+const cellSize = cellSizeInput ? cellSizeInput : 20
 const screenHeight = heightInput ? heightInput : 300
 const screenWidth = widthInput ? widthInput : 300
 const heightInCell = screenHeight/cellSize
@@ -49,7 +49,6 @@ function initScreen(){ // Create grid //
 function turn(){  
   cellArray.forEach(cellRef => {
     console.log(cellRef.position)
-    console.log(cellArray)
     let countLife = 0
     let neightbor = []
 
@@ -72,14 +71,13 @@ function turn(){
         neightbor.push(cellArray[i]) // F
       }
     }
-    console.log(neightbor)
+
     for (let i = 0; i < neightbor.length; i++) {
       let stateExtract = neightbor[i].state
       if(stateExtract === true){
         cellRef.countLife++
       }
     }
-    console.log(countLife)
     if (cellRef.countLife === 3 && cellRef.state === false) {
       cellRef.nextState = true
     }else if(cellRef.countLife === 2 && cellRef.state === true || cellRef.countLife === 3 && cellRef.state === true){
@@ -90,25 +88,32 @@ function turn(){
   });
 
   cellArray.forEach(cellRef => {
-    if (cellRef.countLife === 3 && cellRef.nextState === false) {
+    console.log(cellRef.nextState + ' ' + cellRef.position)
+    if (cellRef.countLife === 3 && cellRef.nextState === true) {
       cellRef.state = true
+      cellRef.nextState = false
+      cellRef.countLife = 0
       cellRef.refresh()
     }else if(cellRef.countLife === 2 && cellRef.nextState === true || cellRef.countLife === 3 && cellRef.nextState === true){
       cellRef.state = true
+      cellRef.nextState = false
+      cellRef.countLife = 0
       cellRef.refresh()
     }else {
       cellRef.state = false
+      cellRef.nextState = false
+      cellRef.countLife = 0
       cellRef.refresh()
     }
   });
 
-  //setTimeout(turn, delay) 
+  setTimeout(turn, delay) 
 }
 
 // List of constructor function //
 function cell(position){
   this.object
-  this.counLife
+  this.countLife = 0
   this.position = position
   this.position = []
   this.state = false
