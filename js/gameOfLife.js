@@ -18,7 +18,7 @@ let screenInBlock = []
 // Setup system elements //
 let gridCreated = false
 let cellArray = []
-let delay = 1500
+let delay = 1000
 let choiceDone = false
 
 initScreen()
