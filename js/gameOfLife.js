@@ -18,7 +18,7 @@ let screenInBlock = []
 // Setup system elements //
 let gridCreated = false
 let cellArray = []
-let delay = 1000
+let delay = 100
 let choiceDone = false
 
 initScreen()
@@ -41,14 +41,14 @@ function initScreen(){ // Create grid //
       newCell.display()
       cellArray.push(newCell)
     });
-    console.log(cellArray)
+    //console.log(cellArray)
     gridCreated = !gridCreated
   }
 }
 
 function turn(){  
   cellArray.forEach(cellRef => {
-    console.log(cellRef.position)
+    //console.log(cellRef.position)
     let countLife = 0
     let neightbor = []
 
@@ -88,7 +88,7 @@ function turn(){
   });
 
   cellArray.forEach(cellRef => {
-    console.log(cellRef.nextState + ' ' + cellRef.position)
+    //console.log(cellRef.nextState + ' ' + cellRef.position)
     if (cellRef.countLife === 3 && cellRef.nextState === true) {
       cellRef.state = true
       cellRef.nextState = false
