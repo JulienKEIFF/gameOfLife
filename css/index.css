@@ -10,3 +10,14 @@ body{
 #bottom button{
   margin-top: 10px;
 }
+
+@media screen and (max-width: 640px){
+  #bottom{
+    height: 50px;
+    position: absolute;
+    top: calc(100vh - 100px);
+  }
+  #bottom button{
+    margin-top: 10px;
+  }
+}

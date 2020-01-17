@@ -26,7 +26,7 @@ initScreen()
 // Function system //
 function initScreen(){ // Create grid //
   if(gridCreated){
-    alert('Grille déja créer')
+    document.location.reload()
     return
   }else{
     for (let i = 0; i < heightInCell - 1; i++) {
