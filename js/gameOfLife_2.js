@@ -3,14 +3,12 @@ let displaySetting = document.getElementById('setting')
 let screen = document.getElementById('screen')
 
 const heightInput = document.getElementById('height-input').value
-const widthInput = document.getElementById('width-input').value
+const widthInput = document.getElementById('width-input').value 
 
 // Setup the grid //
 const cellSize = 20
-const screenHeight = heightInput >= screen.clientHeight ? heightInput : 300 
-const screenWidth = widthInput >= screen.clientHeight ? widthInput : 300
-const heightInCell = screenHeight/cellSize
-const widthInCell = screenWidth/cellSize
+const heightInCell = heightInput ? heightInput : 30
+const widthInCell = widthInput ? widthInput : 30
 let screenInBlock = []
 
 // Setup system elements //
@@ -27,26 +25,27 @@ function initScreen(){ // Create grid //
     document.location.reload()
     return
   }else{
-    for (let i = 0; i < heightInCell - 1; i++) {
+    for (let i = 0; i < heightInCell; i++) {
       let index = i
       screenInBlock.push([0, i])
-      for (let i2 = 1; i2 < widthInCell - 1; i2++) {
+      for (let i2 = 1; i2 < widthInCell; i2++) {
         screenInBlock.push([i2, index])
       }
     }
-    screenInBlock.forEach(el => { 
+    for (let i = 0; i < screenInBlock.length; i++) {
+      const el = screenInBlock[i] 
       newCell = new cell(el, false)
       newCell.display()
       cellArray.push(newCell)
-    });
-    //console.log(cellArray)
+    }
     gridCreated = !gridCreated
   }
 }
 
-function turn(){  
-  cellArray.forEach(cellRef => { //! Transform to for or while, foreach is very slow than for
-    //console.log(cellRef.position)
+function turn(){
+  for (let i = 0; i < cellArray.length; i++) {
+    const cellRef = cellArray[i];
+  
     let countLife = 0
     let neightbor = []
 
@@ -83,10 +82,9 @@ function turn(){
     }else {
       cellRef.nextState = false
     }
-  });
+  };
 
   cellArray.forEach(cellRef => {
-    //console.log(cellRef.nextState + ' ' + cellRef.position)
     if (cellRef.countLife === 3 && cellRef.nextState === true) {
       cellRef.state = true
       cellRef.nextState = false
@@ -139,6 +137,7 @@ function cell(position){
       this.object.style.backgroundColor = 'white'
     }
   }
+  this.neightbor = []
 }
 
 // Click Action //

@@ -2,13 +2,32 @@ body{
   margin: 0;
   padding: 0;
 }
-#bottom{
-  height: 50px;
-  position: absolute;
-  top: calc(100% - 50px);
+button{
+  width: 150px;
+  margin: 10px auto;
 }
-#bottom button{
-  margin-top: 10px;
+input{
+  width: 150px;
+  height: 30px;
+  margin: 10px auto;
+  box-sizing: border-box;
+}
+#config{
+  position: absolute;
+  padding: 10px 0px 30px 20px;
+  left: 83%;
+  height: 92%;
+  background-color: aliceblue;
+  z-index: 10;
+  position: fixed;
+  overflow: hidden;
+  border-left: solid 1px black;
+  border-bottom: solid 1px black;
+}
+#screen{
+  position: absolute;
+  top: 60px;
+  left: 15px;
 }
 
 @media screen and (max-width: 640px){
